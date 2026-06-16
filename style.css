@@ -1,20 +1,15 @@
-/*
-  style.css = 사이트의 디자인(색·폰트·배치)만 담당.
-  index.html은 "무엇을" 보여줄지, css는 "어떻게" 보여줄지를 정함.
-  맨 위 :root 의 색 값만 바꿔도 사이트 분위기가 통째로 바뀜.
-*/
+/* 디자인(색·폰트·배치). 색만 바꾸고 싶으면 :root 값만 수정. */
 
-/* ===== 색·폰트 변수 (여기만 바꾸면 전체 적용) ===== */
 :root {
-  --bg: #0e1116;          /* 배경 (어두운 남색) */
-  --surface: #171c24;     /* 카드 배경 */
-  --text: #e6e9ef;        /* 기본 글자색 */
-  --muted: #8b93a3;       /* 흐린 글자색 */
-  --accent: #4ade80;      /* 강조색 (네온 그린) ← 취향대로 바꾸기 */
+  --bg: #0e1116;
+  --surface: #171c24;
+  --text: #e6e9ef;
+  --muted: #8b93a3;
+  --accent: #4ade80;
   --border: #262d38;
+  --maxw: 760px;
 }
 
-/* ===== 기본 리셋 ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -22,83 +17,89 @@ body {
   color: var(--text);
   font-family: -apple-system, "Segoe UI", "Apple SD Gothic Neo", sans-serif;
   line-height: 1.7;
-  /* 내용을 가운데로 모으고 양옆 여백 */
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 24px;
+  scroll-behavior: smooth;
 }
 
-/* ===== 상단 HERO ===== */
-.hero { padding: 90px 0 60px; }
-.eyebrow {
-  color: var(--accent);
-  font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* ===== 상단 고정 메뉴 ===== */
+.topnav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: var(--maxw); margin: 0 auto; padding: 16px 24px;
+  background: rgba(14,17,22,.85); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
 }
+.brand { font-weight: 700; }
+.navlinks { display: flex; gap: 20px; }
+.navlinks a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+.navlinks a:hover { color: var(--accent); }
+
+/* ===== HERO / ABOUT ===== */
+.hero { padding: 70px 0 50px; }
+.eyebrow { color: var(--accent); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
 .hero h1 { font-size: 56px; margin: 8px 0; }
-.tagline { color: var(--muted); font-size: 18px; max-width: 520px; }
+.tagline { color: var(--muted); font-size: 18px; max-width: 560px; }
 .tagline strong { color: var(--text); }
 
-.links { margin-top: 24px; display: flex; gap: 16px; }
+.links { margin-top: 24px; display: flex; gap: 12px; }
 .links a {
-  color: var(--text);
-  text-decoration: none;
-  border: 1px solid var(--border);
-  padding: 8px 18px;
-  border-radius: 8px;
+  color: var(--text); text-decoration: none;
+  border: 1px solid var(--border); padding: 8px 18px; border-radius: 8px;
   transition: border-color .2s;
 }
 .links a:hover { border-color: var(--accent); }
 
+/* 교육 */
+.edu { margin-top: 36px; }
+.block-label { font-size: 13px; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; }
+.edu-item { display: flex; flex-direction: column; gap: 2px; }
+.edu-school { font-weight: 600; }
+.edu-degree { color: var(--muted); font-size: 15px; }
+.edu-date { color: var(--muted); font-size: 13px; }
+
 /* ===== 섹션 공통 ===== */
-section { padding: 40px 0; border-top: 1px solid var(--border); }
-h2 {
-  font-size: 14px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  margin-bottom: 24px;
-}
+section { padding: 44px 0; border-top: 1px solid var(--border); }
+h2 { font-size: 14px; color: var(--muted); letter-spacing: 1px; margin-bottom: 28px; }
 
-/* ===== 프로젝트 카드 ===== */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.card img { width: 100%; display: block; }
-.card-body { padding: 20px 24px; }
-.card h3 { font-size: 22px; margin-bottom: 4px; }
-.meta { color: var(--accent); font-size: 13px; margin-bottom: 10px; }
-.tags { color: var(--muted); font-size: 13px; margin-top: 10px; }
-.card-body a {
-  display: inline-block;
-  margin-top: 12px;
-  color: var(--accent);
-  text-decoration: none;
-}
+/* ===== EXPERIENCE ===== */
+.exp-item { margin-bottom: 28px; padding-left: 16px; border-left: 2px solid var(--border); }
+.exp-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+.exp-head h3 { font-size: 18px; }
+.exp-date { color: var(--muted); font-size: 13px; }
+.exp-org { color: var(--accent); font-size: 14px; margin: 2px 0 6px; }
+.exp-org a { color: var(--accent); text-decoration: none; }
+.exp-org a:hover { text-decoration: underline; }
+.exp-desc { color: var(--muted); font-size: 15px; list-style: none; }
+.exp-desc li { position: relative; padding-left: 16px; margin-bottom: 3px; }
+.exp-desc li::before { content: "–"; position: absolute; left: 0; color: var(--accent); }
 
-/* ===== 기술 스택 ===== */
-.skill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
-.skill-list li {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
+/* ===== PROJECTS ===== */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.filter {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px;
+  font-size: 14px; cursor: pointer; transition: all .2s;
 }
+.filter:hover { color: var(--text); }
+.filter.active { background: var(--accent); color: #0e1116; border-color: var(--accent); font-weight: 600; }
+
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.pcard {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; transition: border-color .2s;
+}
+.pcard:hover { border-color: var(--accent); }
+.pcard h3 { font-size: 17px; margin-bottom: 4px; }
+.pcat { color: var(--accent); font-size: 12px; margin-bottom: 10px; }
+.pcard p:last-child { color: var(--muted); font-size: 14px; }
 
 /* ===== 하단 ===== */
-footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 13px;
-}
+footer { max-width: var(--maxw); margin: 0 auto; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
 
-/* ===== 모바일 대응 ===== */
+/* ===== 모바일 ===== */
 @media (max-width: 600px) {
   .hero h1 { font-size: 40px; }
+  .grid { grid-template-columns: 1fr; }
+  .navlinks { gap: 14px; }
 }
