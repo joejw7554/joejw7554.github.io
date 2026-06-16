@@ -158,6 +158,11 @@
     // ===== GitHub 연동 프로젝트 =====
     const GH_USER = "joejw7554";          // 깃헙 아이디
     const HIDE_REPOS = ["joejw7554.github.io"]; // 목록에서 숨길 레포(이 사이트 자체 등)
+    // 특정 레포는 깃헙 카드 대신 이 직접 이미지를 사용(캐싱 기다릴 필요 없이 즉시 표시)
+    const REPO_IMAGES = {
+      "2606_Project_DuoStrike": "https://raw.githubusercontent.com/joejw7554/2606_Project_DuoStrike/main/images/duostrike.png"
+    };
+    const imgFor = (r) => REPO_IMAGES[r.name] || ("https://opengraph.githubassets.com/" + Date.now() + "/" + r.full_name);
     const api = (p) => fetch("https://api.github.com" + p, { headers: { "Accept": "application/vnd.github+json" } });
 
     const grid = document.getElementById("projectGrid");
@@ -220,7 +225,7 @@
         card.innerHTML =
           '<div class="pcard-img">' +
             '<span class="pcard-img-fallback">' + escapeHtml(r.name) + '</span>' +
-            '<img src="https://opengraph.githubassets.com/' + Date.now() + '/' + r.full_name + '" alt="" loading="lazy" onerror="this.remove()">' +
+            '<img src="' + imgFor(r) + '" alt="" loading="lazy" onerror="this.remove()">' +
           '</div>' +
           '<div class="pcard-body">' +
             '<h3>' + escapeHtml(r.name) + '</h3>' +
@@ -267,7 +272,7 @@
                 '<div class="m-ogdesc">' + escapeHtml(r.description || "") + '</div>' +
                 '<div class="m-ogstats"><span>★ ' + r.stargazers_count + '</span><span>⑂ ' + r.forks_count + '</span>' + (r.language ? '<span>● ' + escapeHtml(r.language) + '</span>' : '') + '</div>' +
               '</div>' +
-              '<img class="m-ogimg" src="https://opengraph.githubassets.com/' + Date.now() + '/' + r.full_name + '" alt="" onerror="this.remove()">' +
+              '<img class="m-ogimg" src="' + imgFor(r) + '" alt="" onerror="this.remove()">' +
             '</div>' +
           '</div>' +
         '</div>' +
