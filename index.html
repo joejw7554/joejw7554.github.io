@@ -1,63 +1,66 @@
 <!DOCTYPE html>
-<!--
-  한 페이지 안에 3개 섹션(About / Experience / Projects)이 이어지는 구조.
-  맨 위 메뉴를 누르면 해당 섹션으로 스크롤됨.
-  내용 수정은 거의 다 이 파일에서. "수정" 이라고 적힌 곳을 본인 것으로 바꾸면 됨.
--->
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>재우 | Game Programmer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== 상단 고정 메뉴 ===== -->
+  <!-- 상단 고정 메뉴 -->
   <nav class="topnav">
-    <span class="brand">재우</span>
-    <div class="navlinks">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
+    <span class="brand">재우<span class="brand-dot">.</span></span>
+    <div class="nav-right">
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">
+        <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
     </div>
   </nav>
 
   <main>
 
-    <!-- ===== 01 ABOUT ===== -->
+    <!-- 01 ABOUT -->
     <header class="hero" id="about">
-      <p class="eyebrow">Game Programmer · Unity / C#</p>
+      <p class="eyebrow">01 — About</p>
       <h1>재우</h1>
+      <p class="role">Game Programmer · Unity / Unreal · C# / C++</p>
       <p class="tagline">
-        게임 시스템을 설계하고 코드로 구현합니다. Unity와 C#을 중심으로
+        게임 시스템을 설계하고 코드로 구현합니다. Unity·Unreal 환경에서
         게임플레이 시스템과 데이터 테이블 설계, 자동화에 관심이 많습니다.
         현재 웨이브 생존형 협동 슈터 <strong>DUO STRIKE</strong>를 솔로로 개발 중입니다.
-        <!-- ↑ 소개글 수정 -->
       </p>
 
       <div class="links">
-        <a href="https://github.com/joejw7554" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/jaewoojoe/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/joejw7554" target="_blank">GitHub →</a>
+        <a href="https://www.linkedin.com/in/jaewoojoe/" target="_blank">LinkedIn →</a>
       </div>
 
-      <!-- 교육 -->
       <div class="edu">
         <h3 class="block-label">Education</h3>
         <div class="edu-item">
-          <span class="edu-school">University of Central Florida</span>
-          <span class="edu-degree">Digital Media · GPA 3.73 / 4.0</span>
+          <div class="edu-main">
+            <span class="edu-school">University of Central Florida</span>
+            <span class="edu-degree">Digital Media · GPA 3.73 / 4.0</span>
+          </div>
           <span class="edu-date">2018.05 - 2023.05</span>
         </div>
       </div>
     </header>
 
-    <!-- ===== 02 EXPERIENCE ===== -->
+    <!-- 02 EXPERIENCE -->
     <section id="experience">
-      <h2>02 — Experience</h2>
-
+      <p class="eyebrow">02 — Experience</p>
       <div class="exp-layout">
-        <!-- 왼쪽: 경력 목록 (클릭하면 오른쪽이 바뀜) -->
         <div class="exp-list">
           <button class="exp-tab active" data-target="exp-hanmi">
             <span class="exp-tab-org">한미반도체</span>
@@ -71,7 +74,6 @@
           </button>
         </div>
 
-        <!-- 오른쪽: 상세 (선택된 경력만 보임) -->
         <div class="exp-detail">
           <div class="exp-panel active" id="exp-hanmi">
             <h3>MMI연구부 인턴</h3>
@@ -81,7 +83,7 @@
               <li>장비 UI 시스템 디버깅 및 유지 보수</li>
               <li>고객사 서비스 문제 디버깅 및 에러 해결</li>
             </ul>
-            <div class="exp-skills">
+            <div class="tags">
               <span>장비 UI</span><span>디버깅</span><span>유지보수</span><span>고객 지원</span>
             </div>
           </div>
@@ -94,7 +96,7 @@
               <li>C++로 기능 구현 및 RPG 제작 툴과 연동</li>
               <li>NPC 대화 플러그인 버그 수정 및 문서화</li>
             </ul>
-            <div class="exp-skills">
+            <div class="tags">
               <span>Unreal Engine</span><span>C++</span><span>Blueprint</span><span>플러그인</span>
             </div>
           </div>
@@ -102,11 +104,10 @@
       </div>
     </section>
 
-    <!-- ===== 03 PROJECTS ===== -->
+    <!-- 03 PROJECTS -->
     <section id="projects">
-      <h2>03 — Projects &amp; Study</h2>
+      <p class="eyebrow">03 — Projects &amp; Study</p>
 
-      <!-- 카테고리 필터 버튼 -->
       <div class="filters">
         <button class="filter active" data-filter="all">전체</button>
         <button class="filter" data-filter="game">게임</button>
@@ -115,39 +116,32 @@
         <button class="filter" data-filter="etc">기타</button>
       </div>
 
-      <!-- 프로젝트 카드 그리드. data-cat 값으로 필터됨 -->
       <div class="grid">
-
         <article class="pcard" data-cat="game">
           <h3>DUO STRIKE</h3>
           <p class="pcat">게임 · Unity / C#</p>
-          <p>웨이브 생존형 협동 슈터. GDD·데이터 테이블 설계 완료, 개발 착수 단계.</p>
+          <p class="pdesc">웨이브 생존형 협동 슈터. GDD·데이터 테이블 설계 완료, 개발 착수 단계.</p>
         </article>
-
         <article class="pcard" data-cat="algo">
           <h3>코딩 테스트 풀이</h3>
           <p class="pcat">알고리즘 · C#</p>
-          <p>Programmers·LeetCode 문제를 자료구조·시간복잡도 관점에서 풀이·정리.</p>
+          <p class="pdesc">Programmers·LeetCode 문제를 자료구조·시간복잡도 관점에서 풀이·정리.</p>
         </article>
-
         <article class="pcard" data-cat="study">
           <h3>JLPT 일본어 학습</h3>
           <p class="pcat">학습 · 일본어</p>
-          <p>N5부터 N2까지 체계적으로 어휘·문법 학습 진행 중.</p>
+          <p class="pdesc">N5부터 N2까지 체계적으로 어휘·문법 학습 진행 중.</p>
         </article>
-
         <article class="pcard" data-cat="game">
           <h3>Unity / Unreal 연습</h3>
           <p class="pcat">게임 · 엔진</p>
-          <p>엔진 기초 학습 및 소규모 프로토타입 제작.</p>
+          <p class="pdesc">엔진 기초 학습 및 소규모 프로토타입 제작.</p>
         </article>
-
         <article class="pcard" data-cat="etc">
           <h3>게임사 인적성 준비</h3>
           <p class="pcat">기타 · 취업</p>
-          <p>적성검사 영역별 정확도 중심 학습.</p>
+          <p class="pdesc">적성검사 영역별 정확도 중심 학습.</p>
         </article>
-
       </div>
     </section>
 
@@ -157,22 +151,23 @@
     <p>© 2026 재우 · Built with GitHub Pages</p>
   </footer>
 
-  <!-- ===== 카테고리 필터 동작 (이 부분은 건드릴 필요 없음) ===== -->
   <script>
+    // 카테고리 필터 + 버튼에 개수 표시
     const filters = document.querySelectorAll('.filter');
     const cards = document.querySelectorAll('.pcard');
     filters.forEach(btn => {
+      const f = btn.dataset.filter;
+      const n = (f === 'all') ? cards.length
+        : [...cards].filter(c => c.dataset.cat === f).length;
+      btn.innerHTML = btn.textContent + ' <span class="cnt">' + n + '</span>';
       btn.addEventListener('click', () => {
         filters.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const f = btn.dataset.filter;
-        cards.forEach(card => {
-          card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
-        });
+        cards.forEach(c => { c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none'; });
       });
     });
 
-    // 경력: 왼쪽 목록 클릭 → 오른쪽 상세 전환
+    // 경력: 목록 클릭 → 상세 전환
     const expTabs = document.querySelectorAll('.exp-tab');
     const expPanels = document.querySelectorAll('.exp-panel');
     expTabs.forEach(tab => {
@@ -182,6 +177,25 @@
         tab.classList.add('active');
         document.getElementById(tab.dataset.target).classList.add('active');
       });
+    });
+
+    // 스크롤 위치에 따라 메뉴 강조
+    const navAnchors = document.querySelectorAll('.navlinks a');
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navAnchors.forEach(a => a.classList.remove('active'));
+          const link = document.querySelector('.navlinks a[href="#' + e.target.id + '"]');
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('main > section, main > header').forEach(s => spy.observe(s));
+
+    // 라이트/다크 모드 토글
+    const root = document.documentElement;
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      root.dataset.theme = (root.dataset.theme === 'dark') ? 'light' : 'dark';
     });
   </script>
 
