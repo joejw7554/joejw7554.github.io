@@ -105,7 +105,7 @@
               <li>고객사 서비스 문제 디버깅 및 에러 해결</li>
             </ul>
             <div class="tags">
-              <span>C++</span><span>장비 UI</span><span>디버깅</span><span>유지보수</span><span>고객 지원</span>
+              <span>C++</span><span>C++ Builder</span><span>장비 UI</span><span>디버깅</span><span>유지보수</span><span>고객 지원</span>
             </div>
           </div>
 
@@ -254,6 +254,16 @@
               '<div><span class="m-label">LICENSE</span>' + escapeHtml(lic) + '</div>' +
             '</div>' +
             '<div class="m-tags">' + tags.map(t => '<span>' + escapeHtml(t) + '</span>').join("") + '</div>' +
+          '</div>' +
+          '<div class="m-block m-imgblock"><h4>PROJECT IMAGE</h4>' +
+            '<div class="m-ogwrap">' +
+              '<div class="m-ogcard">' +
+                '<div class="m-ogname">' + escapeHtml(r.full_name) + '</div>' +
+                '<div class="m-ogdesc">' + escapeHtml(r.description || "") + '</div>' +
+                '<div class="m-ogstats"><span>★ ' + r.stargazers_count + '</span><span>⑂ ' + r.forks_count + '</span>' + (r.language ? '<span>● ' + escapeHtml(r.language) + '</span>' : '') + '</div>' +
+              '</div>' +
+              '<img class="m-ogimg" src="https://opengraph.githubassets.com/' + Date.now() + '/' + r.full_name + '" alt="" onerror="this.remove()">' +
+            '</div>' +
           '</div>' +
         '</div>' +
         '<div class="m-block"><h4>RECENT COMMITS</h4><div id="mCommits" class="m-commits">불러오는 중…</div></div>' +
