@@ -52,11 +52,10 @@ main { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 /* ===== HERO ===== */
 .hero { padding: 64px 0 56px; }
 .hero .eyebrow { margin-bottom: 14px; }
-.about-grid { display: grid; grid-template-columns: 1fr 230px; gap: 44px; align-items: start; }
 .hero h1 { font-size: 58px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
 .enname { color: var(--muted); font-size: 18px; font-weight: 500; margin-top: 4px; }
 .role { color: var(--accent); font-weight: 600; font-size: 15px; margin: 14px 0 16px; }
-.tagline { color: var(--muted); font-size: 17px; }
+.tagline { color: var(--muted); font-size: 17px; max-width: 640px; }
 .tagline strong { color: var(--text); font-weight: 600; }
 
 .links { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
@@ -69,17 +68,14 @@ main { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 .links a svg { flex-shrink: 0; }
 .links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
-/* 교육 (오른쪽 컬럼, cmbenello식 텍스트 정리) */
-.about-right { padding-top: 4px; }
-.block-label { font-size: 11px; color: var(--muted); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 16px; }
-.about-right .edu-item {
-  display: flex; flex-direction: column; gap: 2px; margin-bottom: 22px;
-}
-.about-right .edu-item:last-child { margin-bottom: 0; }
-.edu-school { font-weight: 700; font-size: 15px; }
-.edu-degree { color: var(--muted); font-size: 13px; }
-.edu-date { color: var(--muted); font-size: 12px; }
-.edu-gpa { color: var(--accent); font-size: 12px; font-weight: 500; margin-top: 2px; }
+/* 교육 (소개글 아래 가로 한 줄) */
+.edu-row { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border); }
+.block-label { font-size: 11px; color: var(--muted); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 12px; }
+.edu-row .edu-item { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 18px; }
+.edu-school { font-weight: 700; font-size: 16px; }
+.edu-degree { color: var(--muted); font-size: 14px; }
+.edu-date { color: var(--muted); font-size: 13px; }
+.edu-gpa { color: var(--accent); font-size: 13px; font-weight: 500; }
 
 /* ===== 대표 작품 배너 ===== */
 .featured { padding: 8px 0 48px; border-top: none; }
@@ -245,7 +241,6 @@ footer { max-width: 780px; margin: 0 auto; padding: 44px 24px; border-top: 1px s
 /* ===== 모바일 ===== */
 @media (max-width: 640px) {
   .hero h1 { font-size: 42px; }
-  .about-grid { grid-template-columns: 1fr; gap: 28px; }
   .tagline { font-size: 16px; }
   .grid { grid-template-columns: 1fr; }
   .navlinks { gap: 13px; font-size: 13px; }
