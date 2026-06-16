@@ -1,0 +1,104 @@
+/*
+  style.css = 사이트의 디자인(색·폰트·배치)만 담당.
+  index.html은 "무엇을" 보여줄지, css는 "어떻게" 보여줄지를 정함.
+  맨 위 :root 의 색 값만 바꿔도 사이트 분위기가 통째로 바뀜.
+*/
+
+/* ===== 색·폰트 변수 (여기만 바꾸면 전체 적용) ===== */
+:root {
+  --bg: #0e1116;          /* 배경 (어두운 남색) */
+  --surface: #171c24;     /* 카드 배경 */
+  --text: #e6e9ef;        /* 기본 글자색 */
+  --muted: #8b93a3;       /* 흐린 글자색 */
+  --accent: #4ade80;      /* 강조색 (네온 그린) ← 취향대로 바꾸기 */
+  --border: #262d38;
+}
+
+/* ===== 기본 리셋 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", "Apple SD Gothic Neo", sans-serif;
+  line-height: 1.7;
+  /* 내용을 가운데로 모으고 양옆 여백 */
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== 상단 HERO ===== */
+.hero { padding: 90px 0 60px; }
+.eyebrow {
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero h1 { font-size: 56px; margin: 8px 0; }
+.tagline { color: var(--muted); font-size: 18px; max-width: 520px; }
+.tagline strong { color: var(--text); }
+
+.links { margin-top: 24px; display: flex; gap: 16px; }
+.links a {
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: border-color .2s;
+}
+.links a:hover { border-color: var(--accent); }
+
+/* ===== 섹션 공통 ===== */
+section { padding: 40px 0; border-top: 1px solid var(--border); }
+h2 {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+/* ===== 프로젝트 카드 ===== */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.card img { width: 100%; display: block; }
+.card-body { padding: 20px 24px; }
+.card h3 { font-size: 22px; margin-bottom: 4px; }
+.meta { color: var(--accent); font-size: 13px; margin-bottom: 10px; }
+.tags { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.card-body a {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ===== 기술 스택 ===== */
+.skill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-list li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* ===== 하단 ===== */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ===== 모바일 대응 ===== */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 40px; }
+}
