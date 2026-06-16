@@ -32,9 +32,10 @@
       <p class="enname">JaeWoo Joe</p>
       <p class="role">Game Programmer · Unity / Unreal · C# / C++</p>
       <p class="tagline">
-        게임 시스템을 설계하고 코드로 구현합니다. Unity·Unreal 환경에서
-        게임플레이 시스템과 데이터 테이블 설계, 자동화에 관심이 많습니다.
-        현재 웨이브 생존형 협동 슈터 <strong>DUO STRIKE</strong>를 솔로로 개발 중입니다.
+        게임 시스템을 설계하고 코드로 구현하는 프로그래머입니다. Epoch Games에서
+        Unreal·C++로 Blueprint 로직을 분석해 C++로 재구현하고 엔진 크래시를 진단·수정하며
+        기존 코드를 다루는 경험을 쌓았습니다. 현재 웨이브 생존형 협동 슈터 <strong>DUO STRIKE</strong>를
+        솔로로 개발하며 기획부터 구현까지 전 과정을 다루고 있습니다.
       </p>
       <div class="links">
         <a href="https://github.com/joejw7554" target="_blank">
@@ -96,12 +97,12 @@
             <h3>MMI연구부 인턴</h3>
             <p class="exp-org">한미반도체 · 2025.09 - 2025.12</p>
             <ul class="exp-desc">
-              <li>장비 UI 메뉴 개선 및 출장 지원</li>
-              <li>장비 UI 시스템 디버깅 및 유지 보수</li>
-              <li>고객사 서비스 문제 디버깅 및 에러 해결</li>
+              <li>고객사 AS 접수 건의 프로그램 결함을 진단·원인 분석 후 수정하여 재배포</li>
+              <li>해외 출장 작업자(비개발자)의 장비 프로그램 문제를 원격으로 분석·진단하고 수정본 송부</li>
+              <li>제어연구부와 협업해 기존 장비의 기능을 타 장비에 동일하게 이식·추가</li>
             </ul>
             <div class="tags">
-              <span>C++</span><span>C++ Builder</span><span>장비 UI</span><span>디버깅</span><span>유지보수</span><span>고객 지원</span>
+              <span>C++</span><span>C++ Builder</span><span>디버깅</span><span>원인 분석</span><span>유지보수</span><span>고객사 대응</span>
             </div>
           </div>
 
@@ -109,9 +110,9 @@
             <h3>인턴</h3>
             <p class="exp-org"><a href="https://epochgames.co.uk/wordpress/" target="_blank">Epoch Games</a> · 2023.08 - 2024.05</p>
             <ul class="exp-desc">
-              <li>Animal Behavior 킷 BP를 C++로 변환하여 Creature 클래스에 반영</li>
-              <li>C++로 기능 구현 및 RPG 제작 툴과 연동</li>
-              <li>NPC 대화 플러그인 버그 수정 및 문서화</li>
+              <li>Animal Behavior 킷의 Blueprint 로직을 분석해 Creature 클래스 기반 C++로 재구현</li>
+              <li>엔진에서 크래시를 유발하던 기존 대화 플러그인의 원인을 진단하고 수정</li>
+              <li>플러그인 동작 및 수정 내용 문서화</li>
             </ul>
             <div class="tags">
               <span>Unreal Engine</span><span>C++</span><span>Blueprint</span><span>플러그인</span>
@@ -161,6 +162,35 @@
     const imgFor = (r) => REPO_IMAGES[r.name] || ("https://opengraph.githubassets.com/" + Date.now() + "/" + r.full_name);
     const api = (p) => fetch("https://api.github.com" + p, { headers: { "Accept": "application/vnd.github+json" } });
 
+    // ===== 캐싱 (브라우저에 잠깐 저장해서 깃헙 호출 횟수 절약) =====
+    const TTL = 30 * 60 * 1000; // 30분
+    function cacheGet(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } }
+    function cacheSet(k, data){ try { localStorage.setItem(k, JSON.stringify({ t: Date.now(), data })); } catch(e){} }
+    // JSON 호출 (캐시 우선, 실패 시 오래된 캐시라도 사용)
+    async function cachedJson(key, url, accept){
+      const c = cacheGet(key);
+      if (c && (Date.now() - c.t) < TTL) return c.data;
+      try {
+        const res = await fetch(url, { headers: { "Accept": accept || "application/vnd.github+json" } });
+        if (!res.ok) throw new Error("status " + res.status);
+        const data = await res.json();
+        cacheSet(key, data);
+        return data;
+      } catch (e) { if (c) return c.data; throw e; }
+    }
+    // 텍스트 호출 (README용)
+    async function cachedText(key, url, accept){
+      const c = cacheGet(key);
+      if (c && (Date.now() - c.t) < TTL) return c.data;
+      try {
+        const res = await fetch(url, { headers: { "Accept": accept } });
+        if (!res.ok) throw new Error("status " + res.status);
+        const data = await res.text();
+        cacheSet(key, data);
+        return data;
+      } catch (e) { if (c) return c.data; throw e; }
+    }
+
     const grid = document.getElementById("projectGrid");
     const filtersEl = document.getElementById("filters");
     let allRepos = [];
@@ -169,9 +199,7 @@
 
     async function loadRepos() {
       try {
-        const res = await api("/users/" + GH_USER + "/repos?per_page=100&sort=updated");
-        if (!res.ok) throw new Error("status " + res.status);
-        let repos = await res.json();
+        let repos = await cachedJson("gh_repos", "https://api.github.com/users/" + GH_USER + "/repos?per_page=100&sort=updated");
         repos = repos.filter(r => !r.fork && !HIDE_REPOS.includes(r.name));
         allRepos = repos;
         if (repos.length === 0) { grid.innerHTML = '<p class="empty-note">공개된 레포지토리가 없습니다.</p>'; return; }
@@ -179,7 +207,7 @@
         renderCards(repos);
         wireFeatured(repos);
       } catch (e) {
-        grid.innerHTML = '<p class="empty-note">프로젝트를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>';
+        grid.innerHTML = '<p class="empty-note">프로젝트를 불러오지 못했습니다. (깃헙 요청 한도에 일시적으로 도달했을 수 있어요. 약 1시간 뒤 다시 시도해 주세요.)</p>';
       }
     }
 
@@ -265,21 +293,22 @@
         '<div class="m-block"><h4>README</h4><pre id="mReadme" class="m-readme">불러오는 중…</pre></div>' +
         '<div class="m-block"><h4>RECENT COMMITS</h4><div id="mCommits" class="m-commits">불러오는 중…</div></div>';
 
-      // 커밋
-      api("/repos/" + r.full_name + "/commits?per_page=8").then(x => x.ok ? x.json() : []).then(cs => {
-        const el = document.getElementById("mCommits");
-        if (!el) return;
-        if (!cs.length) { el.textContent = "커밋 정보가 없습니다."; return; }
-        el.innerHTML = cs.map(c =>
-          '<div class="m-commit"><code>' + c.sha.slice(0,7) + '</code> ' +
-          escapeHtml(c.commit.message.split("\n")[0]) +
-          ' <span class="m-cdate">' + (c.commit.author ? c.commit.author.date.slice(0,10) : "") + '</span></div>'
-        ).join("");
-      }).catch(()=>{ const el=document.getElementById("mCommits"); if(el) el.textContent="커밋을 불러오지 못했습니다."; });
+      // 커밋 (캐시 사용)
+      cachedJson("gh_commits_" + r.full_name, "https://api.github.com/repos/" + r.full_name + "/commits?per_page=8")
+        .then(cs => {
+          const el = document.getElementById("mCommits");
+          if (!el) return;
+          if (!cs || !cs.length) { el.textContent = "커밋 정보가 없습니다."; return; }
+          el.innerHTML = cs.map(c =>
+            '<div class="m-commit"><code>' + c.sha.slice(0,7) + '</code> ' +
+            escapeHtml(c.commit.message.split("\n")[0]) +
+            ' <span class="m-cdate">' + (c.commit.author ? c.commit.author.date.slice(0,10) : "") + '</span></div>'
+          ).join("");
+        }).catch(()=>{ const el=document.getElementById("mCommits"); if(el) el.textContent="커밋을 불러오지 못했습니다."; });
 
-      // README
-      fetch("https://api.github.com/repos/" + r.full_name + "/readme", { headers: { "Accept": "application/vnd.github.raw" } })
-        .then(x => x.ok ? x.text() : null).then(txt => {
+      // README (캐시 사용)
+      cachedText("gh_readme_" + r.full_name, "https://api.github.com/repos/" + r.full_name + "/readme", "application/vnd.github.raw")
+        .then(txt => {
           const el = document.getElementById("mReadme");
           if (!el) return;
           el.textContent = txt ? txt.slice(0, 1200) + (txt.length > 1200 ? "\n…" : "") : "README가 없습니다.";
