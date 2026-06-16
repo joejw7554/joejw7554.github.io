@@ -160,6 +160,21 @@
       "2606_Project_DuoStrike": "https://raw.githubusercontent.com/joejw7554/2606_Project_DuoStrike/main/images/duostrike.png"
     };
     const imgFor = (r) => REPO_IMAGES[r.name] || ("https://opengraph.githubassets.com/" + Date.now() + "/" + r.full_name);
+    // 깃헙 언어별 대표 색 (이미지 없는 카드 배경용)
+    const LANG_COLORS = {
+      "C++": "#f34b7d", "C#": "#178600", "C": "#555555", "Python": "#3572A5",
+      "JavaScript": "#f1e05a", "TypeScript": "#3178c6", "HTML": "#e34c26",
+      "CSS": "#563d7c", "Java": "#b07219", "Shader": "#6b4fbb", "ShaderLab": "#222c37",
+      "GLSL": "#5686a5", "Lua": "#000080", "Go": "#00ADD8", "Rust": "#dea584",
+      "Blueprint": "#5b2a86"
+    };
+    const langColor = (lang) => LANG_COLORS[lang] || "#3a4555";
+    const initials = (name) => {
+      const parts = name.replace(/[_\-.]+/g, " ").trim().split(/\s+/).filter(Boolean);
+      const letters = parts.filter(p => /[A-Za-z]/.test(p[0]));
+      const pick = (letters.length ? letters : parts).slice(0, 2).map(p => p[0].toUpperCase()).join("");
+      return pick || name.slice(0, 2).toUpperCase();
+    };
     const api = (p) => fetch("https://api.github.com" + p, { headers: { "Accept": "application/vnd.github+json" } });
 
     // ===== 캐싱 (브라우저에 잠깐 저장해서 깃헙 호출 횟수 절약) =====
@@ -246,11 +261,19 @@
       repos.forEach(r => {
         const card = document.createElement("article");
         card.className = "pcard";
+        let thumb;
+        if (REPO_IMAGES[r.name]) {
+          // 직접 지정한 이미지가 있으면 그대로 사용 (예: DUO STRIKE)
+          thumb = '<div class="pcard-img"><img src="' + REPO_IMAGES[r.name] + '" alt="" loading="lazy" onerror="this.remove()"></div>';
+        } else {
+          // 없으면 언어 색 배경 + 이니셜
+          const col = langColor(r.language);
+          thumb = '<div class="pcard-img pcard-initial" style="background:linear-gradient(150deg,' + col + ',rgba(0,0,0,.35))">' +
+                    '<span>' + escapeHtml(initials(r.name)) + '</span>' +
+                  '</div>';
+        }
         card.innerHTML =
-          '<div class="pcard-img">' +
-            '<span class="pcard-img-fallback">' + escapeHtml(r.name) + '</span>' +
-            '<img src="' + imgFor(r) + '" alt="" loading="lazy" onerror="this.remove()">' +
-          '</div>' +
+          thumb +
           '<div class="pcard-body">' +
             '<h3>' + escapeHtml(r.name) + '</h3>' +
             '<p class="pdesc">' + escapeHtml(r.description || "설명이 없습니다.") + '</p>' +
