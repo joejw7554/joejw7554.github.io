@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>재우 | Game Programmer</title>
+  <title>조재우 JaeWoo Joe | Game Programmer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 
   <!-- 상단 고정 메뉴 -->
   <nav class="topnav">
-    <span class="brand">재우<span class="brand-dot">.</span></span>
+    <span class="brand">조재우<span class="brand-dot">.</span></span>
     <div class="nav-right">
       <div class="navlinks">
         <a href="#about">About</a>
@@ -32,28 +32,31 @@
     <!-- 01 ABOUT -->
     <header class="hero" id="about">
       <p class="eyebrow">01 — About</p>
-      <h1>재우</h1>
-      <p class="role">Game Programmer · Unity / Unreal · C# / C++</p>
-      <p class="tagline">
-        게임 시스템을 설계하고 코드로 구현합니다. Unity·Unreal 환경에서
-        게임플레이 시스템과 데이터 테이블 설계, 자동화에 관심이 많습니다.
-        현재 웨이브 생존형 협동 슈터 <strong>DUO STRIKE</strong>를 솔로로 개발 중입니다.
-      </p>
-
-      <div class="links">
-        <a href="https://github.com/joejw7554" target="_blank">GitHub →</a>
-        <a href="https://www.linkedin.com/in/jaewoojoe/" target="_blank">LinkedIn →</a>
-      </div>
-
-      <div class="edu">
-        <h3 class="block-label">Education</h3>
-        <div class="edu-item">
-          <div class="edu-main">
-            <span class="edu-school">University of Central Florida</span>
-            <span class="edu-degree">Digital Media · GPA 3.73 / 4.0</span>
+      <div class="about-grid">
+        <div class="about-left">
+          <h1>조재우</h1>
+          <p class="enname">JaeWoo Joe</p>
+          <p class="role">Game Programmer · Unity / Unreal · C# / C++</p>
+          <p class="tagline">
+            게임 시스템을 설계하고 코드로 구현합니다. Unity·Unreal 환경에서
+            게임플레이 시스템과 데이터 테이블 설계, 자동화에 관심이 많습니다.
+            현재 웨이브 생존형 협동 슈터 <strong>DUO STRIKE</strong>를 솔로로 개발 중입니다.
+          </p>
+          <div class="links">
+            <a href="https://github.com/joejw7554" target="_blank">GitHub →</a>
+            <a href="https://www.linkedin.com/in/jaewoojoe/" target="_blank">LinkedIn →</a>
           </div>
-          <span class="edu-date">2018.05 - 2023.05</span>
         </div>
+
+        <aside class="about-right">
+          <h3 class="block-label">Education</h3>
+          <div class="edu-item">
+            <span class="edu-school">University of Central Florida</span>
+            <span class="edu-degree">Digital Media</span>
+            <span class="edu-gpa">GPA 3.73 / 4.0</span>
+            <span class="edu-date">2018.05 - 2023.05</span>
+          </div>
+        </aside>
       </div>
     </header>
 
@@ -117,38 +120,21 @@
       </div>
 
       <div class="grid">
+        <!-- 프로젝트 카드는 나중에 여기에 추가. 형식 예시:
         <article class="pcard" data-cat="game">
-          <h3>DUO STRIKE</h3>
-          <p class="pcat">게임 · Unity / C#</p>
-          <p class="pdesc">웨이브 생존형 협동 슈터. GDD·데이터 테이블 설계 완료, 개발 착수 단계.</p>
+          <h3>제목</h3>
+          <p class="pcat">게임 · Unity</p>
+          <p class="pdesc">설명.</p>
         </article>
-        <article class="pcard" data-cat="algo">
-          <h3>코딩 테스트 풀이</h3>
-          <p class="pcat">알고리즘 · C#</p>
-          <p class="pdesc">Programmers·LeetCode 문제를 자료구조·시간복잡도 관점에서 풀이·정리.</p>
-        </article>
-        <article class="pcard" data-cat="study">
-          <h3>JLPT 일본어 학습</h3>
-          <p class="pcat">학습 · 일본어</p>
-          <p class="pdesc">N5부터 N2까지 체계적으로 어휘·문법 학습 진행 중.</p>
-        </article>
-        <article class="pcard" data-cat="game">
-          <h3>Unity / Unreal 연습</h3>
-          <p class="pcat">게임 · 엔진</p>
-          <p class="pdesc">엔진 기초 학습 및 소규모 프로토타입 제작.</p>
-        </article>
-        <article class="pcard" data-cat="etc">
-          <h3>게임사 인적성 준비</h3>
-          <p class="pcat">기타 · 취업</p>
-          <p class="pdesc">적성검사 영역별 정확도 중심 학습.</p>
-        </article>
+        -->
       </div>
+      <p class="empty-note">프로젝트는 준비 중입니다.</p>
     </section>
 
   </main>
 
   <footer>
-    <p>© 2026 재우 · Built with GitHub Pages</p>
+    <p>© 2026 조재우 (JaeWoo Joe) · Built with GitHub Pages</p>
   </footer>
 
   <script>
@@ -159,7 +145,7 @@
       const f = btn.dataset.filter;
       const n = (f === 'all') ? cards.length
         : [...cards].filter(c => c.dataset.cat === f).length;
-      btn.innerHTML = btn.textContent + ' <span class="cnt">' + n + '</span>';
+      if (n > 0) btn.innerHTML = btn.textContent + ' <span class="cnt">' + n + '</span>';
       btn.addEventListener('click', () => {
         filters.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');

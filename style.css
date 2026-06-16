@@ -74,12 +74,14 @@ main { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 /* ===== HERO ===== */
 .hero { padding: 64px 0 56px; }
 .hero .eyebrow { margin-bottom: 14px; }
-.hero h1 { font-size: 60px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
-.role { color: var(--accent); font-weight: 600; font-size: 15px; margin: 12px 0 16px; }
-.tagline { color: var(--muted); font-size: 18px; max-width: 580px; }
+.about-grid { display: grid; grid-template-columns: 1fr 230px; gap: 44px; align-items: start; }
+.hero h1 { font-size: 58px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.enname { color: var(--muted); font-size: 18px; font-weight: 500; margin-top: 4px; }
+.role { color: var(--accent); font-weight: 600; font-size: 15px; margin: 14px 0 16px; }
+.tagline { color: var(--muted); font-size: 17px; }
 .tagline strong { color: var(--text); font-weight: 600; }
 
-.links { margin-top: 26px; display: flex; gap: 12px; }
+.links { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
 .links a {
   color: var(--text); text-decoration: none; font-weight: 500; font-size: 14px;
   border: 1px solid var(--border); padding: 9px 18px; border-radius: 10px;
@@ -87,18 +89,17 @@ main { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 }
 .links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
-/* 교육 */
-.edu { margin-top: 40px; }
-.block-label { font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
-.edu-item {
-  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px;
-  padding: 16px 18px; background: var(--surface); border: 1px solid var(--border);
+/* 교육 (오른쪽 컬럼, 세로 카드) */
+.block-label { font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+.about-right .edu-item {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 18px; background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; box-shadow: var(--shadow);
 }
-.edu-main { display: flex; flex-direction: column; }
-.edu-school { font-weight: 600; }
+.edu-school { font-weight: 600; font-size: 15px; }
 .edu-degree { color: var(--muted); font-size: 14px; }
-.edu-date { color: var(--muted); font-size: 13px; }
+.edu-gpa { color: var(--accent); font-size: 13px; font-weight: 500; }
+.edu-date { color: var(--muted); font-size: 12px; margin-top: 4px; }
 
 /* ===== 섹션 ===== */
 section { padding: 56px 0; border-top: 1px solid var(--border); }
@@ -113,7 +114,7 @@ section { padding: 56px 0; border-top: 1px solid var(--border); }
 }
 .exp-tab:hover { background: var(--surface); }
 .exp-tab.active { border-left-color: var(--accent); background: var(--accent-soft); }
-.exp-tab-org { font-weight: 600; font-size: 15px; }
+.exp-tab-org { color: var(--text); font-weight: 600; font-size: 15px; }
 .exp-tab-role { color: var(--muted); font-size: 13px; }
 .exp-tab-date { color: var(--muted); font-size: 12px; }
 .exp-tab.active .exp-tab-org { color: var(--accent); }
@@ -159,6 +160,7 @@ section { padding: 56px 0; border-top: 1px solid var(--border); }
 .pcard h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
 .pcat { color: var(--accent); font-size: 12px; font-weight: 500; margin-bottom: 10px; }
 .pdesc { color: var(--muted); font-size: 14px; }
+.empty-note { color: var(--muted); font-size: 14px; padding: 8px 2px; }
 
 /* ===== 하단 ===== */
 footer { max-width: 780px; margin: 0 auto; padding: 44px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
@@ -166,6 +168,7 @@ footer { max-width: 780px; margin: 0 auto; padding: 44px 24px; border-top: 1px s
 /* ===== 모바일 ===== */
 @media (max-width: 640px) {
   .hero h1 { font-size: 42px; }
+  .about-grid { grid-template-columns: 1fr; gap: 28px; }
   .tagline { font-size: 16px; }
   .grid { grid-template-columns: 1fr; }
   .navlinks { gap: 13px; font-size: 13px; }
