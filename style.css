@@ -61,26 +61,50 @@ main { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 
 .links { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
 .links a {
+  display: inline-flex; align-items: center; gap: 8px;
   color: var(--text); text-decoration: none; font-weight: 500; font-size: 14px;
   border: 1px solid var(--border); padding: 9px 18px; border-radius: 10px;
   background: var(--surface); transition: all .2s;
 }
+.links a svg { flex-shrink: 0; }
 .links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
-/* 교육 (오른쪽 컬럼, 세로 카드) */
-.block-label { font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+/* 교육 (오른쪽 컬럼, cmbenello식 텍스트 정리) */
+.about-right { padding-top: 4px; }
+.block-label { font-size: 11px; color: var(--muted); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 16px; }
 .about-right .edu-item {
-  display: flex; flex-direction: column; gap: 3px;
-  padding: 18px; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 2px; margin-bottom: 22px;
 }
-.edu-school { font-weight: 600; font-size: 15px; }
-.edu-degree { color: var(--muted); font-size: 14px; }
-.edu-gpa { color: var(--accent); font-size: 13px; font-weight: 500; }
-.edu-date { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.about-right .edu-item:last-child { margin-bottom: 0; }
+.edu-school { font-weight: 700; font-size: 15px; }
+.edu-degree { color: var(--muted); font-size: 13px; }
+.edu-date { color: var(--muted); font-size: 12px; }
+.edu-gpa { color: var(--accent); font-size: 12px; font-weight: 500; margin-top: 2px; }
 
-/* ===== 섹션 ===== */
-section { padding: 56px 0; border-top: 1px solid var(--border); }
+/* ===== 대표 작품 배너 ===== */
+.featured { padding: 8px 0 48px; border-top: none; }
+.featured .eyebrow { margin-bottom: 16px; }
+.featured-card {
+  display: grid; grid-template-columns: 240px 1fr; gap: 0;
+  width: 100%; text-align: left; cursor: pointer; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; box-shadow: var(--shadow); transition: transform .2s, border-color .2s;
+}
+.featured-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.featured-art {
+  display: grid; place-items: center; min-height: 150px;
+  background:
+    radial-gradient(120% 120% at 20% 0%, rgba(74,222,128,.25), transparent 55%),
+    linear-gradient(135deg, #12331f, #0d1014 70%);
+}
+.featured-art span {
+  font-weight: 800; font-size: 22px; letter-spacing: .04em; color: var(--text);
+  text-shadow: 0 1px 12px rgba(0,0,0,.5);
+}
+.featured-info { padding: 22px 26px; display: flex; flex-direction: column; justify-content: center; }
+.featured-info h3 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.featured-info p { color: var(--muted); font-size: 15px; }
+.featured-cta { color: var(--accent); font-size: 14px; font-weight: 500; margin-top: 14px; }
 
 /* ===== EXPERIENCE ===== */
 .exp-layout { display: grid; grid-template-columns: 210px 1fr; gap: 30px; }
@@ -203,4 +227,6 @@ footer { max-width: 780px; margin: 0 auto; padding: 44px 24px; border-top: 1px s
   .exp-tab.active { border-left: none; border-bottom-color: var(--accent); }
   .m-meta { grid-template-columns: 1fr; }
   .modal-head h2 { font-size: 22px; }
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-art { min-height: 120px; }
 }
