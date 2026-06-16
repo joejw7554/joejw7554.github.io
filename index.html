@@ -265,19 +265,9 @@
             '</div>' +
             '<div class="m-tags">' + tags.map(t => '<span>' + escapeHtml(t) + '</span>').join("") + '</div>' +
           '</div>' +
-          '<div class="m-block m-imgblock"><h4>PROJECT IMAGE</h4>' +
-            '<div class="m-ogwrap">' +
-              '<div class="m-ogcard">' +
-                '<div class="m-ogname">' + escapeHtml(r.full_name) + '</div>' +
-                '<div class="m-ogdesc">' + escapeHtml(r.description || "") + '</div>' +
-                '<div class="m-ogstats"><span>★ ' + r.stargazers_count + '</span><span>⑂ ' + r.forks_count + '</span>' + (r.language ? '<span>● ' + escapeHtml(r.language) + '</span>' : '') + '</div>' +
-              '</div>' +
-              '<img class="m-ogimg" src="' + imgFor(r) + '" alt="" onerror="this.remove()">' +
-            '</div>' +
-          '</div>' +
         '</div>' +
-        '<div class="m-block"><h4>RECENT COMMITS</h4><div id="mCommits" class="m-commits">불러오는 중…</div></div>' +
-        '<div class="m-block"><h4>README</h4><pre id="mReadme" class="m-readme">불러오는 중…</pre></div>';
+        '<div class="m-block"><h4>README</h4><pre id="mReadme" class="m-readme">불러오는 중…</pre></div>' +
+        '<div class="m-block"><h4>RECENT COMMITS</h4><div id="mCommits" class="m-commits">불러오는 중…</div></div>';
 
       // 커밋
       api("/repos/" + r.full_name + "/commits?per_page=8").then(x => x.ok ? x.json() : []).then(cs => {
