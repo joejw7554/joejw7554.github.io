@@ -154,18 +154,28 @@ main { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 .filter .cnt { font-size: 12px; opacity: .7; }
 .filter.active .cnt { opacity: .85; }
 
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .pcard {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px 22px; box-shadow: var(--shadow);
-  transition: transform .2s, border-color .2s;
+  border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+  transition: transform .2s, border-color .2s; cursor: pointer;
 }
-.pcard:hover { border-color: var(--accent); transform: translateY(-2px); }
-.pcard h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
-.pcat { color: var(--accent); font-size: 12px; font-weight: 500; margin-bottom: 10px; }
-.pdesc { color: var(--muted); font-size: 14px; }
+.pcard:hover { border-color: var(--accent); transform: translateY(-3px); }
+.pcard-img {
+  position: relative; aspect-ratio: 2 / 1; display: grid; place-items: center;
+  background: linear-gradient(135deg, #1a2230, #0d1014);
+}
+.pcard-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pcard-img-fallback { font-weight: 800; font-size: 17px; color: var(--muted); padding: 0 14px; text-align: center; word-break: break-all; }
+.pcard-body { padding: 16px 18px; }
+.pcard-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+.pdesc { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+.pcard-tags span {
+  display: inline-block; background: var(--surface-2); border: 1px solid var(--border);
+  padding: 3px 11px; border-radius: 14px; font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+}
 .empty-note { color: var(--muted); font-size: 14px; padding: 8px 2px; grid-column: 1 / -1; }
-.pcard-foot { display: flex; gap: 14px; margin-top: 12px; color: var(--muted); font-size: 13px; }
 
 /* ===== 프로젝트 상세 모달 ===== */
 .modal-overlay {

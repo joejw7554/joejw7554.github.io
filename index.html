@@ -218,10 +218,15 @@
         const card = document.createElement("article");
         card.className = "pcard";
         card.innerHTML =
-          '<h3>' + escapeHtml(r.name) + '</h3>' +
-          '<p class="pcat">' + escapeHtml(r.language || "—") + '</p>' +
-          '<p class="pdesc">' + escapeHtml(r.description || "설명이 없습니다.") + '</p>' +
-          '<div class="pcard-foot"><span>★ ' + r.stargazers_count + '</span><span>⑂ ' + r.forks_count + '</span></div>';
+          '<div class="pcard-img">' +
+            '<span class="pcard-img-fallback">' + escapeHtml(r.name) + '</span>' +
+            '<img src="https://opengraph.githubassets.com/' + Date.now() + '/' + r.full_name + '" alt="" loading="lazy" onerror="this.remove()">' +
+          '</div>' +
+          '<div class="pcard-body">' +
+            '<h3>' + escapeHtml(r.name) + '</h3>' +
+            '<p class="pdesc">' + escapeHtml(r.description || "설명이 없습니다.") + '</p>' +
+            (r.language ? '<div class="pcard-tags"><span>' + escapeHtml(r.language) + '</span></div>' : '') +
+          '</div>';
         card.addEventListener("click", () => openModal(r));
         grid.appendChild(card);
       });
