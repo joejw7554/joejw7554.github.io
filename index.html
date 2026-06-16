@@ -56,31 +56,50 @@
     <section id="experience">
       <h2>02 — Experience</h2>
 
-      <article class="exp-item">
-        <div class="exp-head">
-          <h3>한미반도체 · MMI연구부 인턴</h3>
-          <span class="exp-date">2025.09 - 2025.12</span>
+      <div class="exp-layout">
+        <!-- 왼쪽: 경력 목록 (클릭하면 오른쪽이 바뀜) -->
+        <div class="exp-list">
+          <button class="exp-tab active" data-target="exp-hanmi">
+            <span class="exp-tab-org">한미반도체</span>
+            <span class="exp-tab-role">MMI연구부 인턴</span>
+            <span class="exp-tab-date">2025.09 - 2025.12</span>
+          </button>
+          <button class="exp-tab" data-target="exp-epoch">
+            <span class="exp-tab-org">Epoch Games</span>
+            <span class="exp-tab-role">인턴</span>
+            <span class="exp-tab-date">2023.08 - 2024.05</span>
+          </button>
         </div>
-        <p class="exp-org">한미반도체</p>
-        <ul class="exp-desc">
-          <li>장비 UI 메뉴 개선 및 출장 지원</li>
-          <li>장비 UI 시스템 디버깅 및 유지 보수</li>
-          <li>고객사 서비스 문제 디버깅 및 에러 해결</li>
-        </ul>
-      </article>
 
-      <article class="exp-item">
-        <div class="exp-head">
-          <h3>Epoch Games 인턴</h3>
-          <span class="exp-date">2023.08 - 2024.05</span>
+        <!-- 오른쪽: 상세 (선택된 경력만 보임) -->
+        <div class="exp-detail">
+          <div class="exp-panel active" id="exp-hanmi">
+            <h3>MMI연구부 인턴</h3>
+            <p class="exp-org">한미반도체 · 2025.09 - 2025.12</p>
+            <ul class="exp-desc">
+              <li>장비 UI 메뉴 개선 및 출장 지원</li>
+              <li>장비 UI 시스템 디버깅 및 유지 보수</li>
+              <li>고객사 서비스 문제 디버깅 및 에러 해결</li>
+            </ul>
+            <div class="exp-skills">
+              <span>장비 UI</span><span>디버깅</span><span>유지보수</span><span>고객 지원</span>
+            </div>
+          </div>
+
+          <div class="exp-panel" id="exp-epoch">
+            <h3>인턴</h3>
+            <p class="exp-org"><a href="https://epochgames.co.uk/wordpress/" target="_blank">Epoch Games</a> · 2023.08 - 2024.05</p>
+            <ul class="exp-desc">
+              <li>Animal Behavior 킷 BP를 C++로 변환하여 Creature 클래스에 반영</li>
+              <li>C++로 기능 구현 및 RPG 제작 툴과 연동</li>
+              <li>NPC 대화 플러그인 버그 수정 및 문서화</li>
+            </ul>
+            <div class="exp-skills">
+              <span>Unreal Engine</span><span>C++</span><span>Blueprint</span><span>플러그인</span>
+            </div>
+          </div>
         </div>
-        <p class="exp-org"><a href="https://epochgames.co.uk/wordpress/" target="_blank">Epoch Games</a></p>
-        <ul class="exp-desc">
-          <li>Animal Behavior 킷 BP를 C++로 변환하여 Creature 클래스에 반영</li>
-          <li>C++로 기능 구현 및 RPG 제작 툴과 연동</li>
-          <li>NPC 대화 플러그인 버그 수정 및 문서화</li>
-        </ul>
-      </article>
+      </div>
     </section>
 
     <!-- ===== 03 PROJECTS ===== -->
@@ -150,6 +169,18 @@
         cards.forEach(card => {
           card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
         });
+      });
+    });
+
+    // 경력: 왼쪽 목록 클릭 → 오른쪽 상세 전환
+    const expTabs = document.querySelectorAll('.exp-tab');
+    const expPanels = document.querySelectorAll('.exp-panel');
+    expTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        expTabs.forEach(t => t.classList.remove('active'));
+        expPanels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).classList.add('active');
       });
     });
   </script>

@@ -62,17 +62,38 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 section { padding: 44px 0; border-top: 1px solid var(--border); }
 h2 { font-size: 14px; color: var(--muted); letter-spacing: 1px; margin-bottom: 28px; }
 
-/* ===== EXPERIENCE ===== */
-.exp-item { margin-bottom: 28px; padding-left: 16px; border-left: 2px solid var(--border); }
-.exp-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
-.exp-head h3 { font-size: 18px; }
-.exp-date { color: var(--muted); font-size: 13px; }
-.exp-org { color: var(--accent); font-size: 14px; margin: 2px 0 6px; }
+/* ===== EXPERIENCE (목록 + 상세) ===== */
+.exp-layout { display: grid; grid-template-columns: 200px 1fr; gap: 28px; }
+
+.exp-list { display: flex; flex-direction: column; gap: 4px; }
+.exp-tab {
+  display: flex; flex-direction: column; gap: 2px;
+  background: transparent; border: none; cursor: pointer;
+  text-align: left; padding: 10px 12px; border-left: 2px solid var(--border);
+  transition: all .2s;
+}
+.exp-tab:hover { background: var(--surface); }
+.exp-tab.active { border-left-color: var(--accent); background: var(--surface); }
+.exp-tab-org { color: var(--text); font-weight: 600; font-size: 15px; }
+.exp-tab-role { color: var(--muted); font-size: 13px; }
+.exp-tab-date { color: var(--muted); font-size: 12px; }
+.exp-tab.active .exp-tab-org { color: var(--accent); }
+
+.exp-panel { display: none; }
+.exp-panel.active { display: block; animation: fade .25s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.exp-panel h3 { font-size: 20px; margin-bottom: 4px; }
+.exp-org { color: var(--accent); font-size: 14px; margin: 0 0 12px; }
 .exp-org a { color: var(--accent); text-decoration: none; }
 .exp-org a:hover { text-decoration: underline; }
 .exp-desc { color: var(--muted); font-size: 15px; list-style: none; }
-.exp-desc li { position: relative; padding-left: 16px; margin-bottom: 3px; }
+.exp-desc li { position: relative; padding-left: 16px; margin-bottom: 4px; }
 .exp-desc li::before { content: "–"; position: absolute; left: 0; color: var(--accent); }
+.exp-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.exp-skills span {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 20px; font-size: 13px; color: var(--muted);
+}
 
 /* ===== PROJECTS ===== */
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
@@ -102,4 +123,8 @@ footer { max-width: var(--maxw); margin: 0 auto; padding: 40px 24px; border-top:
   .hero h1 { font-size: 40px; }
   .grid { grid-template-columns: 1fr; }
   .navlinks { gap: 14px; }
+  .exp-layout { grid-template-columns: 1fr; gap: 16px; }
+  .exp-list { flex-direction: row; overflow-x: auto; }
+  .exp-tab { border-left: none; border-bottom: 2px solid var(--border); min-width: 130px; }
+  .exp-tab.active { border-left: none; border-bottom-color: var(--accent); }
 }
