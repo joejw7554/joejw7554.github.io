@@ -92,11 +92,13 @@ main { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 }
 .featured-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .featured-art {
-  display: grid; place-items: center; min-height: 150px;
+  position: relative; display: grid; place-items: center; min-height: 150px;
   background:
     radial-gradient(120% 120% at 20% 0%, rgba(74,222,128,.25), transparent 55%),
     linear-gradient(135deg, #12331f, #0d1014 70%);
 }
+.featured-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.featured-art img + span { display: none; }
 .featured-art span {
   font-weight: 800; font-size: 22px; letter-spacing: .04em; color: var(--text);
   text-shadow: 0 1px 12px rgba(0,0,0,.5);
